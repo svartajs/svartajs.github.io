@@ -13,7 +13,7 @@ head:
 
 # Svarta
 
-_Svarta_ is a TypeScript-native, ESM-native REST API framework.
+_Svarta_ is a TypeScript-native, ESM-native platform-agnostic REST API framework.
 
 By abstracting the underlying platform, it allows deployment to different platforms without changing your code.
 
