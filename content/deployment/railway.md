@@ -14,7 +14,7 @@ Create a new GitHub repository.
 
 Clone the repository locally. Then run:
 
-::code-group
+::: code-group
 
 ```bash [pnpm]
 pnpm create svarta-app --force
@@ -28,22 +28,18 @@ yarn create svarta-app --force
 npm create svarta-app --force
 ```
 
-::
+:::
 
 Enter the repository folder as the project folder.
 
 Then, push the changes to GitHub.
 
-::code-group
-
-```bash [terminal]
+```bash
 cd <project-folder>
 git add .
 git commit -m "init"
 git push
 ```
-
-::
 
 ## Deploy to Railway
 

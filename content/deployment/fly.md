@@ -13,15 +13,15 @@ Let's setup a simple web server on [fly.io](https://fly.io/) using Docker.
 1. Create a fly.io account
 2. Make sure the `flyctl` CLI tool is installed
 
-::alert{type="info"}
+::: info
 Check out the [fly.io Docs](https://fly.io/docs/hands-on/install-flyctl/) for more information
-::
+:::
 
 ## Setup web server
 
 Now setup a new HTTP web server using:
 
-::code-group
+::: code-group
 
 ```bash [pnpm]
 pnpm create svarta-app
@@ -35,7 +35,7 @@ yarn create svarta-app
 npm create svarta-app
 ```
 
-::
+:::
 
 And follow the in-terminal instructions. Select the `starter-http` template.
 
@@ -45,37 +45,29 @@ In `svarta.config.mjs` change `defaultPort` to `8080` (the default for fly.io). 
 
 ## Create Fly.io app
 
-::code-group
-
-```bash [terminal]
+```bash
 flyctl launch
 ```
-
-::
 
 flyctl will detect the Dockerfile. Go through the setup and then deploy using:
 
 ## Deploy to Fly.io
 
-::code-group
-
-```bash [terminal]
+```bash
 flyctl deploy
 ```
-
-::
 
 Wait for the docker image to deploy, then your API will be deployed on \[app-name\].fly.dev.
 
 ## Continuous deployment
 
+### GitHub Actions
+
 1. Create a access token at https://fly.io/user/personal_access_tokens
 2. Set a `FLY_API_TOKEN` secret in the GitHub repository settings
 3. Create the following workflow file (change `branches` as needed)
 
-### GitHub Actions
-
-::code-group
+::: code-group
 
 ```yaml [.github/workflows/fly.yml]
 name: Deploy to Fly
@@ -97,4 +89,4 @@ jobs:
       - run: flyctl deploy --remote-only
 ```
 
-::
+:::

@@ -4,7 +4,7 @@
 
 This is the default deployment target. It is powered by [tinyhttp](https://tinyhttp.v1rtl.site/), weighing in at only about 250 kB. Your routes will be bundled and minified into a single file using [esbuild](https://esbuild.github.io/).
 
-::code-group
+::: code-group
 
 ```js [svarta.config.mjs]
 import standaloneAdapter from "@svarta/adapter-standalone";
@@ -31,13 +31,13 @@ const config = {
 export default config;
 ```
 
-::
+:::
 
 Using the example above, just run `node .output/server.mjs` to run the server.
 
-::alert{type="info"}
+::: info
 Check out the full standalone starter template [here](https://github.com/svartajs/svarta/tree/main/templates/starter-http)
-::
+:::
 
 ## Configuration reference
 
@@ -72,7 +72,7 @@ If `logger.enabled` is true, a simple HTTP logger is installed before your route
 
 <!-- TODO: peers not required with auto install -->
 
-::code-group
+::: code-group
 
 ```bash [pnpm]
 pnpm i -D @svarta/adapter-standalone @tinyhttp/app
@@ -86,4 +86,4 @@ yarn add -D @svarta/adapter-standalone @tinyhttp/app
 npx i -D @svarta/adapter-standalone @tinyhttp/app
 ```
 
-::
+:::

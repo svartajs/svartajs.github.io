@@ -16,7 +16,9 @@ etc.
 
 To create a route, default export a route handler by calling `route.handle`.
 
-> `route` is the default route entry point and can be extended using [middlewares](/usage/middlewares)
+To send a response, use the `Response` class.
+
+::: code-group
 
 ```ts [routes/index.get.ts]
 import { Response, route, Status } from "svarta";
@@ -26,13 +28,17 @@ export default route.handle(async () => {
 });
 ```
 
-To send a response, use the `Response` class.
+:::
+
+> `route` is the default route entry point and can be extended using [middlewares](/concepts/middlewares)
 
 ## Input validation
 
 To validate the request body, use `route.input`.
 
-```ts [routes/index.post.ts]
+::: code-group
+
+```ts{2} [routes/index.post.ts]
 export default route
   .input(zod.object({ name: zod.string() }).strict())
   .handle(async ({ input }) => {
@@ -43,17 +49,19 @@ export default route
   });
 ```
 
+:::
+
 ## Route parameters
 
 Consider this route, which should greet the user using the name given in the route path.
 
-::alert{type="warning"}
+::: warning
 This will not build, as params are unknown by default.
-::
+:::
 
-::code-group
+::: code-group
 
-```ts [routes/hello/[name].get.ts]
+```ts{4} [routes/hello/[name].get.ts]
 import { Response, route, Status } from "svarta";
 
 export default route.handle(async ({ params }) => {
@@ -65,23 +73,23 @@ export default route.handle(async ({ params }) => {
 });
 ```
 
-::
+:::
 
 ---
 
-::alert{type="success"}
+::: info
 To statically validate parameters, export a `params` array and add it to the handler.
-::
+:::
 
-::code-group
+::: code-group
 
 ```ts [routes/hello/[name].get.ts]
 import { Response, route, Status } from "svarta";
 
-export const params = ["name"] as const;
+export const params = ["name"] as const; // [!code ++]
 
 export default route
-  .params(params) // <- register params
+  .params(params) // <- register params // [!code ++]
   .handle(async ({ params }) => {
     const { name } = params; // OK!
 
@@ -91,41 +99,44 @@ export default route
   });
 ```
 
-::
+:::
 
 ---
 
 Now consider adding additional parameters that are not present in the actual route filename:
 
-::alert{type="danger"}
+::: warning
 The params will be checked while building to validate the parameters are actually valid. If not, the build will fail.
-::
+:::
 
-::code-group
+::: code-group
 
-```ts [routes/hello/[name].get.ts]
+```ts{6} [routes/hello/[name].get.ts]
 import { Response, route, Status } from "svarta";
 
 // another_param is defined, but not defined in the route filename.
-// This will show a warning while developing, and will fatally error during build
+// This will show a warning while developing
+// and will fatally error during build
 export const params = ["name", "another_param"] as const;
 
-export default route.params(params).handle(async ({ params }) => {
-  const { name } = params;
+export default route
+  .params(params)
+  .handle(async ({ params }) => {
+    const { name } = params;
 
-  return new Response(Status.Ok, {
-    message: `Hello ${name}!`,
+    return new Response(Status.Ok, {
+      message: `Hello ${name}!`,
+    });
   });
-});
 ```
 
-::
+:::
 
 ## Redirects
 
 `Redirect` is a helper class that wraps the standard `Response` class for easier redirect handling.
 
-::code-group
+::: code-group
 
 ```ts [routes/index.get.ts]
 import { Redirect, route } from "svarta";
@@ -135,13 +146,13 @@ export default route.handle(async () => {
 });
 ```
 
-::
+:::
 
 ## Route input reference
 
 ### `ctx`
 
-User-provided context. This can be set by using [middlewares](/usage/middlewares).
+User-provided context. This can be set by using [middlewares](/concepts/middlewares).
 
 ### `path`
 
@@ -163,9 +174,9 @@ HTTP method (`GET`, `POST`, etc).
 
 Can be used to get and set HTTP headers.
 
-::code-group
+::: code-group
 
-```ts [routes/secret.get.ts]
+```ts{5,9} [routes/secret.get.ts]
 import { Redirect, Response, route, Status } from "svarta";
 import YAML from "yaml";
 
@@ -183,7 +194,7 @@ export default route.handle(async ({ headers }) => {
 });
 ```
 
-::
+:::
 
 ### `input`
 
@@ -201,12 +212,12 @@ Route query parameters.
 
 Development flag, which is `true` if the app is run in development mode.
 
-::code-group
+::: code-group
 
-```ts [routes/index.get.ts]
+```ts{4} [routes/index.get.ts]
 import { Response, route, Status } from "svarta";
 
-export default route.handle(async ({ headers, isDev }) => {
+export default route.handle(async ({ isDev }) => {
   if (!isDev) {
     logRequest();
   }
@@ -217,15 +228,15 @@ export default route.handle(async ({ headers, isDev }) => {
 });
 ```
 
-::
+:::
 
 ### `cookies`
 
 Can be used to get and set HTTP cookies.
 
-::code-group
+::: code-group
 
-```ts [routes/dashboard.get.ts]
+```ts{4,14-18} [routes/dashboard.get.ts]
 import { Redirect, Response, route, Status } from "svarta";
 
 export default route.handle(async ({ cookies }) => {
@@ -251,4 +262,4 @@ export default route.handle(async ({ cookies }) => {
 });
 ```
 
-::
+:::

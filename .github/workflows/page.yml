@@ -13,18 +13,22 @@ jobs:
         os:
           - ubuntu-latest
         node-version:
-          - 16.x
+          - 20
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
       - name: Install dependencies
-        run: npm install
+        run: pnpm i
       - name: Generate page
-        run: npm run generate
+        run: pnpm build
       - name: Deploy page
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: .output/public
+          folder: .vitepress/dist

@@ -2,73 +2,45 @@
 
 ## Install
 
-::code-group
-
-```bash [terminal]
+```bash
 npm i -g @svarta/cli
 ```
 
-::
-
 ## Help
 
-::code-group
-
-```bash [terminal]
+```bash
 svarta help
 svarta [command] --help
 ```
 
-::
-
 ## Scaffold new project
 
-::code-group
-
-```bash [terminal]
+```bash
 svarta init --manager [npm,yarn,pnpm]
 ```
-
-::
 
 Same as `create svarta-app`
 
 ## Run development server
 
-::code-group
-
-```bash [terminal]
+```bash
 svarta dev
 ```
 
-::
-
 ## Build server
 
-::code-group
-
-```bash [terminal]
+```bash
 svarta build
 ```
 
-::
-
 ## Deploy server
 
-::code-group
-
-```bash [terminal]
+```bash
 svarta deploy
 ```
 
-::
-
 ## Show version
 
-::code-group
-
-```bash [terminal]
+```bash
 svarta --version
 ```
-
-::

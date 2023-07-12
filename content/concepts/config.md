@@ -2,7 +2,7 @@
 
 ## Example
 
-::code-group
+::: code-group
 
 ```js [svarta.config.mjs]
 /**
@@ -18,7 +18,7 @@ const config = {
 export default config;
 ```
 
-::
+:::
 
 ## Reference
 
@@ -36,7 +36,7 @@ Minifies your code to reduce bundle size.
 
 ### `adapter`
 
-The chosen adapter determines to which platform you want to deploy your server to. [More info here](/adapters).
+The chosen adapter determines to which platform you want to deploy your server to. [More info here](/adapters/).
 
 ### `packageManager`
 
