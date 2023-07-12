@@ -1,0 +1,1 @@
+import{_ as s,o as a,c as n,V as l}from"./chunks/framework.d3b95951.js";const F=JSON.parse('{"title":"Route API","description":"","frontmatter":{},"headers":[],"relativePath":"api/route.md","filePath":"api/route.md"}'),p={name:"api/route.md"},o=l("",35),e=[o];function t(c,r,E,y,i,u){return a(),n("div",null,e)}const h=s(p,[["render",t]]);export{F as __pageData,h as default};
