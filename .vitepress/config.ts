@@ -36,8 +36,14 @@ export default defineConfig({
         items: [
           { text: "Routes", link: "/concepts/routes" },
           { text: "Middlewares", link: "/concepts/middlewares" },
-          { text: "Configuration", link: "/concepts/config" },
           { text: "Command line tool", link: "/concepts/cli" },
+        ],
+      },
+      {
+        text: "API",
+        items: [
+          { text: "Route", link: "/api/route" },
+          { text: "Configuration", link: "/api/config" },
         ],
       },
       {

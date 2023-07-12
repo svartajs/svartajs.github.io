@@ -9,7 +9,7 @@
  * @type {import("@svarta/cli").Config}
  */
 const config = {
-  packageManager: "npm",
+  packageManager: "pnpm",
   routeFolder: "routes",
   minify: true,
   adapter: ADAPTER,

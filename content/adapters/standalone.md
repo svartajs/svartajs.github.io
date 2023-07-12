@@ -2,7 +2,7 @@
 
 - Package: `@svarta/adapter-standalone`
 
-This is the default deployment target. It is powered by [tinyhttp](https://tinyhttp.v1rtl.site/), weighing in at only about 250 kB. Your routes will be bundled and minified into a single file using [esbuild](https://esbuild.github.io/).
+This is the default deployment target. It is powered by [hono](https://hono.dev/), weighing in at only about 35 kB. Your routes will be bundled and minified into a single file using [esbuild](https://esbuild.github.io/).
 
 ::: code-group
 
@@ -13,12 +13,11 @@ import standaloneAdapter from "@svarta/adapter-standalone";
  * @type {import("@svarta/cli").Config}
  */
 const config = {
-  packageManager: "npm",
+  packageManager: "pnpm",
   routeFolder: "routes",
   minify: true,
   adapter: standaloneAdapter({
     defaultPort: 7777,
-    provider: "tinyhttp",
     outputFile: ".output/server.mjs",
     logger: {
       enabled: true,
@@ -45,11 +44,13 @@ Check out the full standalone starter template [here](https://github.com/svartaj
 
 The default port to bind to. The HTTP port can be dynamically adjusted using the environment variables `SVARTA_PORT` or `PORT`.
 
-### `provider`
+### `runtime`
 
-- Default: `"tinyhttp"`
+- Default: `"node"`
 
-The server backend library. Currently, only `tinyhttp` is supported.
+The server runtime. Currently, only `node` is supported.
+
+<!-- TODO: deno, bun -->
 
 ### `outputFile`
 
@@ -75,15 +76,15 @@ If `logger.enabled` is true, a simple HTTP logger is installed before your route
 ::: code-group
 
 ```bash [pnpm]
-pnpm i -D @svarta/adapter-standalone @tinyhttp/app
+pnpm i -D @svarta/adapter-standalone hono
 ```
 
 ```bash [yarn]
-yarn add -D @svarta/adapter-standalone @tinyhttp/app
+yarn add -D @svarta/adapter-standalone hono
 ```
 
 ```bash [npm]
-npx i -D @svarta/adapter-standalone @tinyhttp/app
+npx i -D @svarta/adapter-standalone hono
 ```
 
 :::
