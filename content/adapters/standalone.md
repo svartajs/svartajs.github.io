@@ -1,6 +1,6 @@
 # Standalone
 
-- Package: `@svarta/adapter-standalone`
+`@svarta/adapter-standalone`
 
 This is the default deployment target. It is powered by [hono](https://hono.dev/), weighing in at only about 35 kB. Your routes will be bundled and minified into a single file using [esbuild](https://esbuild.github.io/).
 
