@@ -126,6 +126,10 @@ export default route.handle(async ({ headers }) => {
 
 Input body. Use `route.input` to define an input, which will be automatically validated before your route handler runs. See more [here](/concepts/routes#input-validation).
 
+## output
+
+Like `input`, but validates the server response body. See more [here](/concepts/routes#output-validation).
+
 ## params
 
 Route parameters. See more [here](/concepts/routes#route-parameters).

@@ -33,11 +33,11 @@ svarta dev
 svarta build
 ```
 
-## Deploy server
-
+<!-- ## Deploy server
+TODO:
 ```bash
 svarta deploy
-```
+``` -->
 
 ## Show version
 

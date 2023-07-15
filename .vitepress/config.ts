@@ -36,6 +36,7 @@ export default defineConfig({
         items: [
           { text: "Routes", link: "/concepts/routes" },
           { text: "Middlewares", link: "/concepts/middlewares" },
+          { text: "Error handlers", link: "/concepts/error_handlers" },
           { text: "Command line tool", link: "/concepts/cli" },
         ],
       },

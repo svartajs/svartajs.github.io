@@ -142,124 +142,27 @@ export default route
 import { Redirect, route } from "svarta";
 
 export default route.handle(async () => {
-  return new Redirect("https://google.com", true /* permanent */);
+  return new Redirect("https://google.com", { permanent: true });
 });
 ```
 
 :::
 
-## Route input reference
+## Output validation
 
-### `ctx`
-
-User-provided context. This can be set by using [middlewares](/concepts/middlewares).
-
-### `path`
-
-Full path without the query parameters.
-
-Example: `/user?id=3` => `/user`
-
-### `url`
-
-Full path with query parameters.
-
-Example: `/user?id=3` => `/user?id=3`
-
-### `method`
-
-HTTP method (`GET`, `POST`, etc).
-
-### `headers`
-
-Can be used to get and set HTTP headers.
+To validate the response body, use `route.output`.
 
 ::: code-group
 
-```ts{5,9} [routes/secret.get.ts]
-import { Redirect, Response, route, Status } from "svarta";
-import YAML from "yaml";
-
-export default route.handle(async ({ headers }) => {
-  if (!headers.get("authorization")) {
-    return new Redirect("/", false);
-  }
-
-  headers.set("content-type", "application/yaml");
-  const body = YAML.stringify({
-    message: "welcome to the secret page",
+```ts{2} [routes/index.post.ts]
+export default route
+  .output(zod.object({ message: zod.string() }).strict())
+  .handle(async () => {
+    return new Response(Status.Ok, {
+      // output is type-safe, this will show an error and return 500 in production
+      msg: "Hello",
+    });
   });
-
-  return new Response(Status.Ok, body);
-});
-```
-
-:::
-
-### `input`
-
-Input body. Use `route.input` to define an input, which will be automatically validated before your route handler runs. See [above](#input-validation).
-
-### `params`
-
-Route parameters. See [above](#route-parameters).
-
-### `query`
-
-Route query parameters.
-
-### `isDev`
-
-Development flag, which is `true` if the app is run in development mode.
-
-::: code-group
-
-```ts{4} [routes/index.get.ts]
-import { Response, route, Status } from "svarta";
-
-export default route.handle(async ({ isDev }) => {
-  if (!isDev) {
-    logRequest();
-  }
-
-  return new Response(Status.Ok, {
-    message: "hello",
-  });
-});
-```
-
-:::
-
-### `cookies`
-
-Can be used to get and set HTTP cookies.
-
-::: code-group
-
-```ts{4,14-18} [routes/dashboard.get.ts]
-import { Redirect, Response, route, Status } from "svarta";
-
-export default route.handle(async ({ cookies }) => {
-  const session = cookies.get("session");
-  if (!session) {
-    return new Redirect("/", false);
-  }
-
-  const user = await getUser(session);
-  if (!user) {
-    return new Redirect("/", false);
-  }
-
-  cookies.set("session", generateSession(), {
-    httpOnly: true,
-    // additional cookie parameters here
-    // the options parameter is optional
-  });
-
-  return new Response(Status.Ok, {
-    message: "You are signed in",
-  });
-});
 ```
 
 :::
