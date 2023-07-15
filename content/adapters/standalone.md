@@ -34,8 +34,8 @@ export default config;
 
 Using the example above, just run `node .output/server.mjs` to run the server.
 
-::: info
-Check out the full standalone starter template [here](https://github.com/svartajs/svarta/tree/main/templates/starter-http)
+::: warning
+Even if the `.output` folder just contains a single file, you should always deploy the entire folder, as there are no guarantees the output bundle only consists of a single file.
 :::
 
 ## Configuration reference

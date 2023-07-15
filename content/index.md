@@ -69,16 +69,3 @@ npm run dev
 The default project contains an `index.html` file that is served as `/` and an API route that returns a text, which will be inserted into the HTML page.
 
 Check out [Concepts](/concepts/routes) to learn how to create routes.
-
-## Oh no, ESM!
-
-The default template uses `ES modules` instead of CommonJS. The transition to ESM has been quite troublesome so far, however most platforms and dependencies support ESM now:
-
-- https://blog.logrocket.com/es-modules-in-node-js-12-from-experimental-to-release/
-- https://blog.cloudflare.com/workers-javascript-modules/
-- https://aws.amazon.com/de/about-aws/whats-new/2022/01/aws-lambda-es-modules-top-level-await-node-js-14/
-- https://www.netlify.com/blog/intro-to-serverless-functions/
-- https://deno.land/manual@v1.17.0/npm_nodejs/compatibility_mode
-- https://bun.sh/docs/runtime/modules
-
-The output module format can still be changed to CommonJS, however in most cases, this should not be necessary.
