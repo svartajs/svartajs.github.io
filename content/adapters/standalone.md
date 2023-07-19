@@ -52,11 +52,11 @@ The server runtime. Currently, only `node` is supported.
 
 <!-- TODO: deno, bun -->
 
-### `outputFile`
+### `outputFolder`
 
-The output file to which your server will be bundled & output to.
+- Default: `".output"`
 
-If the file ends with `.js`, it will be converted as CommonJS server, `.mjs` emits an ESM server instead, which is recommended.
+The output folder to which your server will be bundled & output to. The entry point is called `entry.mjs`.
 
 ### `logger`
 

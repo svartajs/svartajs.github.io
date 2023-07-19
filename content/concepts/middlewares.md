@@ -16,6 +16,7 @@ const protectedRoute = route.middleware(async ({ headers, ctx }) => {
 
   const user = await getUser(authHeader);
 
+  // Add user to context
   return {
     ...ctx,
     user,
@@ -41,9 +42,10 @@ You can chain middlewares by calling `.middleware` on another middleware. This w
 import { Response, route, Status } from "svarta";
 
 // See example above for "protectedRoute"
-const signedRoute = protectedRoute.middleware(async ({ headers, ctx }) => {
+const signedRoute = protectedRoute.middleware(async ({ headers }) => {
   headers.set("x-my-header", "abc");
-  return ctx;
+  // Returning nothing will pass through the previous context
+  // You can also do "return ctx;"
 });
 
 export default signedRoute.handle(async ({ ctx }) => {

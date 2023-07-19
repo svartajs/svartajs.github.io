@@ -25,6 +25,7 @@ You also get:
 - dependency bundling (treeshaking etc.)
 - [CLI](/concepts/cli) to scaffold projects
 - development server with HMR
+- MIT license
 
 It aims to provide a more robust developer experience than established packages like _Express_ or _Koa_, while being lightweight and hassle-free when using TypeScript.
 
