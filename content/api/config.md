@@ -24,13 +24,9 @@ export default config;
 
 ### `routeFolder`
 
-- Default: `"routes"`
-
 The base folder from which all routes are loaded and based on.
 
 ### `minify`
-
-- Default: `true`
 
 Minifies your code to reduce bundle size.
 

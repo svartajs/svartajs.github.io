@@ -22,8 +22,6 @@ const config = {
     logger: {
       enabled: true,
     },
-    // TODO: public serving
-    // TODO: deploy
   }),
 };
 
@@ -32,7 +30,10 @@ export default config;
 
 :::
 
-Using the example above, just run `node .output/server.mjs` to run the server.
+<!-- // TODO: public serving
+    // TODO: deploy -->
+
+Using the example above, just run `node .output/entry.mjs` to run the server.
 
 ::: warning
 Even if the `.output` folder just contains a single file, you should always deploy the entire folder, as there are no guarantees the output bundle only consists of a single file.
@@ -46,21 +47,15 @@ The default port to bind to. The HTTP port can be dynamically adjusted using the
 
 ### `runtime`
 
-- Default: `"node"`
-
 The server runtime. Currently, only `node` is supported.
 
 <!-- TODO: deno, bun -->
 
 ### `outputFolder`
 
-- Default: `".output"`
-
 The output folder to which your server will be bundled & output to. The entry point is called `entry.mjs`.
 
 ### `logger`
-
-- Default: `{ enabled: true }`
 
 If `logger.enabled` is true, a simple HTTP logger is installed before your routes.
 
@@ -68,23 +63,3 @@ If `logger.enabled` is true, a simple HTTP logger is installed before your route
 // TODO: deploy -->
 
 ---
-
-## Manual install
-
-<!-- TODO: peers not required with auto install -->
-
-::: code-group
-
-```bash [pnpm]
-pnpm i -D @svarta/adapter-standalone hono
-```
-
-```bash [yarn]
-yarn add -D @svarta/adapter-standalone hono
-```
-
-```bash [npm]
-npx i -D @svarta/adapter-standalone hono
-```
-
-:::
